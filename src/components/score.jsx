@@ -1,13 +1,20 @@
-import { memo, useMemo, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 
-export const Score = memo(({ data }) => {
+export const Score = memo(({ data, playerCount }) => {
 	const [scoreList, setScoreList] = useState([]);
+	const scoreData = [];
+
+	useEffect(() => {
+		for (let i = 0; i < playerCount; i++) {
+			scoreData[i] = 0;
+		}
+	}, []);
+
 	useMemo(() => {
-		const scoreData = [];
 		data.map((item) => {
 			item.map((score, index) => {
 				scoreData[index] = isNaN(Number(scoreData[index]))
-					? 0
+					? Number(score)
 					: Number(scoreData[index]) + Number(score);
 				console.log(
 					isNaN(Number(scoreData[index])),
@@ -20,8 +27,13 @@ export const Score = memo(({ data }) => {
 	}, [data]);
 	return (
 		<div>
-			{scoreList?.map((data) => {
-				return <div key={Math.random() * 100}>{data}</div>;
+			{scoreList?.map((data, index) => {
+				return (
+					<div key={Math.random() * 100}>
+						player {index + 1}&nbsp;
+						{data}
+					</div>
+				);
 			})}
 		</div>
 	);

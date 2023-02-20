@@ -44,7 +44,7 @@ export default memo(() => {
 					);
 				})}
 			</form>
-			<Score data={data.scores} />
+			<Score data={data.scores} playerCount={data.playerCount} />
 		</>
 	);
 });
