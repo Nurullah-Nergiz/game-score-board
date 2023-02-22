@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 export const Context = createContext();
 
 export const GameContext = ({ children }) => {
-    const [playerCount, setPlayerCount] = useState(2);
+    const [playerCount, setPlayerCount] = useState(0);
     const [scores, setScores] = useState([]);
     
             

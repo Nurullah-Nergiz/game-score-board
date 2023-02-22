@@ -16,11 +16,6 @@ export const Score = memo(({ data, playerCount }) => {
 				scoreData[index] = isNaN(Number(scoreData[index]))
 					? Number(score)
 					: Number(scoreData[index]) + Number(score);
-				console.log(
-					isNaN(Number(scoreData[index])),
-					typeof scoreData[index],
-					score,
-				);
 			});
 		});
 		setScoreList([...scoreData]);
@@ -29,12 +24,12 @@ export const Score = memo(({ data, playerCount }) => {
 		<div>
 			{scoreList?.map((data, index) => {
 				return (
-					<div key={Math.random() * 100}>
-						player {index + 1}&nbsp;
-						{data}
+					<div key={Math.random().toString()}>
+						player {index + 1 + " " + data}
 					</div>
 				);
 			})}
+			
 		</div>
 	);
 });

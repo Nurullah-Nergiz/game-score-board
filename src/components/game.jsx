@@ -1,6 +1,7 @@
 import { memo, useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../contexts/store";
 import { Score } from "./score";
+import Cookies from "js-cookie";
 
 export default memo(() => {
 	const data = useContext(Context);
@@ -11,8 +12,8 @@ export default memo(() => {
 		for (let index = 0; index < data.playerCount; index++) {
 			setInputLoopCount((item) => [...item, index]);
 		}
-		console.log(inputRef);
-	}, []);
+		console.log(inputLoopCount, inputRef);
+	}, [data.playerCount]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -20,22 +21,26 @@ export default memo(() => {
 		Object.values(inputRef).map((el, i) => {
 			// score.push(typeof Number(el.value));
 			typeof Number(el.value) === "number" && score.push(Number(el.value));
+			el.value = "";
+			i === 0 && el.focus();
 		});
 
 		data.setScores((item) => {
 			const filteredData = score.filter((item) => !isNaN(item));
-			console.log(item);
 			return [...item, filteredData];
 		});
+	};
+
+	const handleRemove = () => {
+		Cookies.remove("data");
 	};
 
 	return (
 		<>
 			<form className='game' onSubmit={handleSubmit}>
-				<button onClick={handleSubmit}>save</button>
 				{inputLoopCount.map((index) => {
 					return (
-						<div className='row' key={Math.random() + 10}>
+						<div className='row' key={index + 1}>
 							<input
 								type='number'
 								ref={(el) => (inputRef[index] = el)}
@@ -43,6 +48,8 @@ export default memo(() => {
 						</div>
 					);
 				})}
+				<button onClick={handleSubmit}>save</button>
+				<button onClick={handleRemove}>reset</button>
 			</form>
 			<Score data={data.scores} playerCount={data.playerCount} />
 		</>
