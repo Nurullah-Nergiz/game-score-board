@@ -20,7 +20,7 @@ export default memo(() => {
 		const score = [];
 		Object.values(inputRef).map((el, i) => {
 			// score.push(typeof Number(el.value));
-			typeof Number(el.value) === "number" && score.push(Number(el.value));
+			typeof Number(el.value) === "number" && score.push(Number(el.valueAsNumber));
 			el.value = "";
 			i === 0 && el.focus();
 		});
@@ -29,10 +29,13 @@ export default memo(() => {
 			const filteredData = score.filter((item) => !isNaN(item));
 			return [...item, filteredData];
 		});
+		Cookies.set("data", JSON.stringify(data));
 	};
 
-	const handleRemove = () => {
-		Cookies.remove("data");
+	const handleRemove = (e) => {
+		console.log('remove');
+		data.setPlayerCount(0);
+		Cookies.set("data",'');
 	};
 
 	return (

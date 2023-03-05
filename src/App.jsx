@@ -7,12 +7,12 @@ export default memo(() => {
 	const count = useRef(0);
 
 	useEffect(() => {
-		let cookie  = Cookies.get('data');
-
+		const cookie = Cookies.get("data");
 		if (cookie) {
-			cookie = JSON.parse(cookie);
-			data.setPlayerCount(cookie.playerCount);
-			data.setScores([...cookie.scores]);
+			const { playerCount, scores } = JSON.parse(cookie);
+			console.log(cookie);
+			data.setPlayerCount(playerCount);
+			data.setScores([...scores]);
 		}
 	}, []);
 
@@ -25,10 +25,10 @@ export default memo(() => {
 					onSubmit={(e) => {
 						e.preventDefault();
 						data.setPlayerCount(() => count.current.value);
-						Cookies.set('data',JSON.stringify(data))
+						Cookies.set("data", JSON.stringify(data));
 					}}
 				>
-					Player count
+					Player count &nbsp;
 					<input type='number' autoFocus ref={count} />
 				</form>
 			)}
