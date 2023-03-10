@@ -22,14 +22,18 @@ export const Score = memo(({ data, playerCount }) => {
 	}, [data]);
 	return (
 		<div>
-			{scoreList?.map((data, index) => {
-				return (
-					<div key={Math.random().toString()}>
-						player {index + 1 + " " + data}
-					</div>
-				);
-			})}
-			
+			<div>Game round count {data.length}</div>
+			<ul>
+				{scoreList?.map((data, index) => {
+					return (
+						index + 1 <= playerCount && (
+							<li key={Math.random().toString()}>
+								Player {`${index + 1}  ${data}`}
+							</li>
+						)
+					);
+				})}
+			</ul>
 		</div>
 	);
 });

@@ -7,10 +7,15 @@
     padding: 2rem;
     display: flex;
     gap: 2rem;
+    flex-wrap: wrap;
 }
 
 button{
     padding: 0.5em;
     /* margin: 0.5em; */
     
+}
+
+li{
+    list-style: none;
 }

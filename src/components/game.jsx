@@ -47,6 +47,7 @@ export default memo(() => {
 							<input
 								type='number'
 								ref={(el) => (inputRef[index] = el)}
+								required
 							/>
 						</div>
 					);
