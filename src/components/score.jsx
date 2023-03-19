@@ -22,8 +22,8 @@ export const Score = memo(({ data, playerCount }) => {
 	}, [data]);
 	return (
 		<div>
-			<div>Game round count {data.length}</div>
 			<ul>
+				<li>Game round count {data.length}</li>
 				{scoreList?.map((data, index) => {
 					return (
 						index + 1 <= playerCount && (
@@ -31,6 +31,16 @@ export const Score = memo(({ data, playerCount }) => {
 								Player {`${index + 1}  ${data}`}
 							</li>
 						)
+					);
+				})}
+			</ul>
+			<hr />
+			<ul>
+				{data.map((item,i) => {
+					return (
+						<li key={Math.random().toString()*i}>
+							Round {i+1} {item.join('-')}
+						</li>
 					);
 				})}
 			</ul>

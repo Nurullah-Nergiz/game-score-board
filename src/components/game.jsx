@@ -35,6 +35,7 @@ export default memo(() => {
 	const handleRemove = (e) => {
 		console.log('remove');
 		data.setPlayerCount(0);
+		data.setScores([]);
 		Cookies.set("data",'');
 	};
 
@@ -44,6 +45,7 @@ export default memo(() => {
 				{inputLoopCount.map((index) => {
 					return (
 						<div className='row' key={index + 1}>
+							Player {index+1} &nbsp;
 							<input
 								type='number'
 								ref={(el) => (inputRef[index] = el)}
