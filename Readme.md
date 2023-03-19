@@ -1,3 +1,7 @@
+<!-- ```bash -->
+[Live demo](https://game-score-boards.netlify.app/)
+<!-- ``` -->
+
 
 ##Installation
 
